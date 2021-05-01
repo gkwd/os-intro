@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lab002.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="%D1%82%D0%B8%D1%82%D1%83%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BB%D0%B8%D1%81%D1%82">Титульный лист</h2>
+<p>Отчёт по лабораторной работе №2
+Ибрагимов Улугбек Ботырхонович</p>
+<h2 id="%D1%86%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B">Цель работы</h2>
+<p>Изучить идеологию и применение средств контроля версий.</p>
+<h2 id="%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5">Задание</h2>
+<ol>
+<li>Создайте учётную запись на https://github.com.</li>
+<li>Настройте систему контроля версий git, как это описано выше c использованием
+сервера репозиториев https://github.com/.</li>
+<li>Создайте структуру каталога лабораторных работ согласно пункту М.2.</li>
+<li>Подключите репозиторий:
+4.1. Создайте репозиторий на GitHub. Для примера назовём его os-intro.
+4.2. Рабочий каталог будем обозначать как laboratory. Вначале нужно перейти в этот каталог: <code>cd laboratory</code>
+4.3. Инициализируем системы git: <code>git init</code>
+4.4. Создаём заготовку для файла <code>README.md</code>:
+<code>echo &quot;# Лабораторные работы&quot; &gt;&gt; README.md git add README.md</code>
+4.5. Делаем первый коммит и выкладываем на github:
+<code>git commit -m &quot;first commit&quot;</code>
+<code>git remote add origin</code>
+<code>↪ git@github.com:&lt;username&gt;/sciproc-intro.git</code>
+<code>git push -u origin master</code></li>
+<li>Первичная конфигурация:
+5.1. Добавим файл лицензии: <code>wget https://creativecommons.org/licenses/by/4.0/legalcode.txt</code>
+<code>↪ -O LICENSE</code>
+5.2. Добавим шаблон игнорируемых файлов. Просмотрим список имеющихся шаблонов: <code>curl -L -s https://www.gitignore.io/api/list</code>
+Затем скачаем шаблон, например, для C: <code>curl -L -s https://www.gitignore.io/api/c &gt;&gt; .gitignore</code>
+5.3. Можно это же сделать через web-интерфейс на сайте <code>https://www.gitignore.io/.</code>
+5.4. Добавим новые файлы:
+<code>git add .</code>
+5.5. Выполним коммит:
+<code>git commit -a</code>
+5.6. Отправим на github:
+<code>git push</code></li>
+<li>Конфигурация git-flow:
+6.1. Инициализируем git-flow
+<code>git flow init</code>
+Префикс для ярлыков установим в v.
+6.2. Проверьте, что Вы на ветке <code>develop</code>:
+<code>git branch</code>
+6.3. Создадим релиз с версией 1.0.0
+<code>git flow release start 1.0.0</code>
+6.4. Запишем версию:
+<code>echo &quot;1.0.0&quot; &gt;&gt; VERSION</code>
+6.5. Добавим в индекс:
+<code>git add .</code>
+<code>git commit -am 'chore(main): add version'</code>
+6.6 Зальём релизную ветку в основную ветку
+<code>git flow release finish 1.0.0</code>
+6.7 Отправим данные на github
+<code>git push --all</code>
+<code>git push --tags</code>
+6.8 Создадим релиз на github</li>
+</ol>
+<h2 id="%D1%85%D0%BE%D0%B4-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B">Ход выполнения работы</h2>
+<ol>
+<li>Создали репозиторий <code>os-intro</code> <img src="./lab002-1.png" alt=""></li>
+<li>Создаем рабочий каталог <code>laboratory</code>, переходим в него <img src="./lab002-2.png" alt="">)</li>
+<li>Инициализируем системы Git, делаем первый коммит в виде файла к README.md <img src="./lab002-2.png" alt="">) и <img src="./lab002-3.png" alt="">)</li>
+<li>Выкладываем на git <img src="./lab002-4.png" alt="">)</li>
+<li>Добавляем лицензию <img src="./lab002-5.png" alt="">)</li>
+<li>Скачиваем и добавляем gitignore <img src="./lab002-6.png" alt="">) <img src="./lab002-7.png" alt="">)</li>
+<li>Публикуем коммиты <img src="./lab002-8.png" alt="">) <img src="./lab002-9.png" alt="">)</li>
+<li>Инициализурем git-flow и потоки параллельной разработки <img src="./lab002-10.png" alt="">)</li>
+<li>Создаем релиз 1.0.0 <img src="./lab002-11.png" alt="">)</li>
+<li>Отправим на git <img src="./lab002-12.png" alt="">)</li>
+</ol>
+<h2 id="%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D1%8B">Выводы</h2>
+<p>В ходе выполнения Лабораторной работы №2, были приобретены навыки по администрированию и взаимодействию с децентрализованной системой контроля версий и программой git для параллельной разработки и поддержки программного кода.</p>
+<h2 id="%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%8B-%D0%BD%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D1%8B">Ответы на контрольные вопросы</h2>
+<ol>
+<li>Что такое системы контроля версий (VCS) и для решения каких задач они предназначаются?</li>
+</ol>
+<blockquote>
+<p>Ответ: Системы контроля версий (VCS) применяются при работе нескольких человек над одним проектом, совместная работа путем изменения файлов в одном репозитории</p>
+</blockquote>
+<ol start="2">
+<li>Объясните следующие понятия VCS и их отношения: хранилище, commit, история, рабочая копия.</li>
+</ol>
+<blockquote>
+<p>Ответ:</p>
+<ul>
+<li>Хранилище - общее пространство для хранения файлов</li>
+<li>Commit - команда для записииндексированных изменений в репозиторий</li>
+<li>История - в истории сохраняются все коммиты, по которым можно отследить автора, сообщение, дату и хэш коммита</li>
+<li>Рабочая копия - все файлы кроме <code>.git/</code> называются рабочей копией, и принадлежать пользователю (-лям)</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>Что представляют собой и чем отличаются централизованные и децентрализованные VCS? Приведите примеры VCS каждого вида.</li>
+</ol>
+<blockquote>
+<p>Ответ: Централизованные системы контроля версий - сохраняют проект и его файлы на один общий сервер, децентрализованные системы контроля версий - при каждом копировании данных удаленного репозитория, происходит полное копирование данных в локальный репозиторий. Пример ЦСКВ - SVN, MS TFS, ClearCase; ДСКВ - Git, Mercurial, Bazaar.</p>
+</blockquote>
+<ol start="4">
+<li>Опишите действия с VCS при единоличной работе с хранилищем.</li>
+</ol>
+<blockquote>
+<p>Ответ:</p>
+<ol>
+<li>Создаем репозиторий, именуем его</li>
+<li>Добавляем файлы в репозиторий</li>
+<li>Фиксируем с помощью коммитов</li>
+<li>Изменяем файлы репозитория и фиксируем изменения</li>
+</ol>
+</blockquote>
+<ol start="5">
+<li>Опишите порядок работы с общим хранилищем VCS.</li>
+</ol>
+<blockquote>
+<p>Ответ:</p>
+<ol>
+<li>Создаем репозиторий, именуем его или присоединяемся к нему в качестве <code>contibutor</code></li>
+<li>Добавляем файлы в репозиторий</li>
+<li>Фиксируем с помощью коммитов</li>
+<li>Изменяем файлы репозитория и фиксируем изменения</li>
+<li>Ждем проверки коммитов при участии других пользователей в общем репозитории</li>
+</ol>
+</blockquote>
+<ol start="6">
+<li>Каковы основные задачи, решаемые инструментальным средством git?</li>
+</ol>
+<blockquote>
+<p>Ответ: Систематизация, параллельность разработки программного обеспечения, единое место для хранение файлов проекта</p>
+</blockquote>
+<ol start="7">
+<li>Назовите и дайте краткую характеристику командам git.</li>
+</ol>
+<blockquote>
+<p>Ответ: Создание репозитория (<code>git init</code>), Клонирование репозитория (<code>git clone</code>), Добавление изменений в индекс (<code>git add</code>), Удаление изменений из индекса (<code>git reset</code>), Коммиты (<code>git commit</code>), Удаление файла (<code>git rm</code>).</p>
+</blockquote>
+<ol start="8">
+<li>Приведите примеры использования при работе с локальным и удалённым репозиториями.</li>
+</ol>
+<blockquote>
+<p>Ответ: Для написания черновых работ по лабораторным работам я использую локальные репозитории, для их распространения или для оценивания преподователем я использую удаленный репозиторий <code>git</code></p>
+</blockquote>
+<ol start="9">
+<li>Что такое и зачем могут быть нужны ветви (branches)?</li>
+</ol>
+<blockquote>
+<p>Ответ: Ветви служат для паралельной разработки программного обеспечения, тестирования, отладки и улучшения</p>
+</blockquote>
+<ol start="10">
+<li>Как и зачем можно игнорировать некоторые файлы при commit?</li>
+</ol>
+<blockquote>
+<p>Ответ: Игнорирование можно установить для проекта, компьютера и репозитория, цель игнорирования заключается в том, чтобы неотслеживать файлы служебного типа, например временные файлы сборных утилит для проектов или только те файлы которые полезны при взаимодействии только с очень ограниченным программным обеспечением</p>
+</blockquote>
+
+</body>
+</html>
