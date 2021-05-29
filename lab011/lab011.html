@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lab011.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="%D1%82%D0%B8%D1%82%D1%83%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BB%D0%B8%D1%81%D1%82">Титульный лист</h2>
+<p>Отчёт по лабораторной работе №11
+Ибрагимов Улугбек Ботырхонович</p>
+<h2 id="%D1%86%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B">Цель работы</h2>
+<p>Изучить основы программирования в оболочке ОС UNIX/Linux, научиться писать небольшие командные файлы</p>
+<h2 id="%D1%85%D0%BE%D0%B4-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B">Ход выполнения работы:</h2>
+<ol>
+<li>
+<p>Написать скрипт, который при запуске будет делать резервную копию самого себя (то есть файла, в котором содержится его исходный код) в другую директорию <code>backup</code> в вашем домашнем каталоге. При этом файл должен архивироваться одним из архиваторов на выбор - <code>zip</code>, <code>bzip2</code> или <code>tar</code>. Способ использования командархивации необходимо узнать, изучив справку.
+<img src="./lab11-001.png" alt="lab11-001.png)">
+<img src="./lab11-002.png" alt="lab11-002.png)">
+<img src="./lab11-003.png" alt="lab11-003.png)"></p>
+</li>
+<li>
+<p>Написать пример командного файла, обрабатывающего любое произвольноечисло аргументов командной строки, в том числе превышающее десять. Например, скрипт может последовательно распечатывать значения всех переданных аргументов
+<img src="./lab11-004.png" alt="lab11-004.png)">
+<img src="./lab11-005.png" alt="lab11-005.png)"></p>
+</li>
+<li>
+<p>Написать командный файл — аналог команды <code>ls</code> (без использования самой этойкоманды и команды <code>dir</code>). Требуется, чтобы он выдавал информацию о нужном каталоге и выводил информацию о возможностях доступа к файлам этого каталога
+<img src="./lab11-006.png" alt="lab11-006.png)">
+<img src="./lab11-007.png" alt="lab11-007.png)"></p>
+</li>
+<li>
+<p>Написать командный файл, который получает в качестве аргумента командной строки формат файла <code>.txt,.doc,.jpg,.pdfи т.д.</code> и вычисляет количество таких файлов в указанной директории. Путь к директории также передаётся ввиде аргумента командной строки
+<img src="./lab11-008.png" alt="lab11-008.png)">
+<img src="./lab11-009.png" alt="lab11-009.png)"></p>
+</li>
+</ol>
+<h2 id="%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4">Вывод</h2>
+<p>В ходе выполнения Лабораторной работы №11, были приобретены навыки по языку <code>bash</code>, а также изучил возможности которые дает этот язык в повседневном использовании</p>
+<h2 id="%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D1%8B">Контрольные вопросы</h2>
+<ol>
+<li>Командная строка - промежуточный слой связи между пользователем и операционной системой, пользователь дает команды операционной системе через командную строку, а операционная система в свою очередь дает ответ пользователю через командную строку. Пример: POSIX, bash, zsh, cmd</li>
+<li>POSIX - стандартизированный интерфейс оболочки между пользователем и операционной системой. В теории, абсолютно все дистрибутивы выполненные на основе *nix, обладают возможностью кроссплатформенного исполнения инструкций, например инструкция для Ubuntu, MacOS, Solaris должна выглядеть одинаково при использовании гайдлайнов POSIX, отдельно все встраиваемые операционные системы обладают стандартом <code>POSIX Ready</code>, что означает почти 99% (кроме специальных инструкций, например из-за различных архитектур ОС) поддерживаемость и на других дистрибутивах с такой пометкой</li>
+<li>В <code>bash</code> могут быть определены одномерные массивы - переменные специального вида, доступ к которым осуществляется с одним именем, но с разным индексом. Для управления используются команды: <code>name[%n%] = value</code></li>
+<li>Оператор <code>let</code> - используется для суммирования
+Оператор <code>read</code> - считывает строку из стандартного ввода и разбивает на слова</li>
+<li>Арифметические операции в <code>bash</code>:</li>
+</ol>
+<ul>
+<li><code>+</code> - сложение</li>
+<li><code>-</code> - вычитание</li>
+<li><code>*</code> - умножение</li>
+<li><code>/</code> - деление</li>
+<li><code>%</code> - вычисление остатка</li>
+<li><code>**</code> - возведение в степень</li>
+<li><code>+=</code> - декремент</li>
+<li><code>-=</code> - инкремент</li>
+<li><code>*=</code> - умножение на заданное число</li>
+<li><code>/=</code> - деление на заданное число</li>
+</ul>
+<ol start="6">
+<li><code>(( ))</code> - запись условия <code>if-else</code> в оболочке <code>bash</code></li>
+<li>Стандартные переменные:</li>
+</ol>
+<ul>
+<li><code>HOME</code> - домашний каталог пользователя</li>
+<li><code>CDPATH</code> - список каталогов разделенных двоеточиями и используемые при поиске пути встроенной командой <code>cd</code></li>
+<li><code>IFS</code> - символы, с помощью которых разделяются поля</li>
+<li><code>MAIL</code> - если не задан <code>MAILPATH</code>, то пользователь будет информирован</li>
+<li><code>MAILPATH</code> - список имен файлов, которые ОС периодически проверяет на наличие письма</li>
+<li><code>PATH</code> - список каталогов, в которых командная оболочка ищет команды</li>
+</ul>
+<ol start="8">
+<li><code>' &lt; &gt; * ? | \ &quot; &amp;</code> - метасимволы, которые значительно упрощают использование командной оболочки путем написания регулярных выражений</li>
+<li>Экранирование осуществляется с помощью обратного слеша <code>\</code>, для выражений используются двойные кавычки, а для экранирования группы метасимволов испольщуют одинарные кавычки</li>
+<li>Создаем текстовый файл с необходмой кодировкой, открываем терминал, переходим в директорию с файлов, и исполняем команду: <code>bash my_command [arguments]</code>, вводим необходимые аргументы после названия нашего файла и нажимаем Enter, так же можно изменить доступ и дать права <code>sudo chmod u+x my_command</code> и после изменения доступа можно вызывать коммандный файл без использования слова <code>bash</code></li>
+<li>Для создания функций используется ключевое слово <code>function</code>, после которого можно написать команды которые при исполнении файла будут исполнены в одном блоке <code>function</code></li>
+<li>Заходим в терминал, пишем <code>ls -lrt</code>, смотрим вывод, если в выводе есть символ <code>d</code>, то значит что искомый нами файл является директорийй (каталогом или папкой)</li>
+<li>Команда <code>set</code> - выводит список переменных окружений
+Команда <code>typeset</code> - ограничивает переменные (изменяет доступ, числа, массив или вообще осущесвляет экспорт данных)
+Команда <code>unset</code> - удаляет переменную, а на самом деле устанавливает ее значение <code>null</code></li>
+<li>В командный файл можно передать от одного до девяти файлов</li>
+<li></li>
+</ol>
+<ul>
+<li><code>$*</code> — отображается вся командная строка или параметры оболочки</li>
+<li><code>$?</code> — код завершения последней выполненной команды</li>
+<li><code>$$</code> — уникальный идентификатор процесса, в рамках которого выполняется командный процессор</li>
+<li><code>$!</code> — номер процесса, в рамках которого выполняется последняя вызванная на выполнение в командном режиме команда</li>
+<li><code>$-</code> — значение флагов командного процессора</li>
+<li><code>${#*}</code> — возвращает целое число — количество слов, которые были результатом <code>$</code></li>
+<li><code>${#name}</code> — возвращает целое значение длины строки в переменной name</li>
+<li><code>${name[n]}</code> — обращение к <code>n-му</code> элементу массива</li>
+<li><code>${name[*]}</code> — перечисляет все элементы массива, разделённые пробелом</li>
+<li><code>${name[@]}</code> — то же самое, но позволяет учитывать символы пробелы в самих переменных</li>
+<li><code>${name:-value}</code> — если значение переменной name не определено, то оно будет заменено на указанное <code>value</code></li>
+<li><code>${name:value}</code> — проверяется факт существования переменной</li>
+<li><code>${name=value}</code> — если name не определено, то ему присваивается значение <code>value</code></li>
+<li><code>${name?value}</code> — останавливает выполнение, если имя переменной не определено, и выводит value как сообщение об ошибке</li>
+<li><code>${name+value}</code> — это выражение работает противоположно <code>${name-value}</code>. Если переменная определена, то подставляется <code>value</code></li>
+<li><code>${name#pattern}</code> — представляет значение переменной name с удалённым самым коротким левым образцом <code>(pattern)</code></li>
+<li><code>${#name[*]}</code> и <code>${#name[@]}</code> — эти выражения возвращают количество элементов в массиве name</li>
+</ul>
+
+</body>
+</html>
