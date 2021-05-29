@@ -52,10 +52,23 @@ header-includes:
 ## Цель работы
 Изучить основы программирования в оболочке ОС UNIX/Linux, научиться писать небольшие командные файлы
 ## Видео 
-* ![Видео часть первая](https://youtu.be/i6db4hguh4A)
-* ![Видео часть Вторая](https://youtu.be/xHwwPXLpzIs)
-* ![Видео часть Третья](https://youtu.be/LpBXKAn-INg)
-* ![Видео часть Четвертая](https://youtu.be/I2CcxgwxWm8)
+
+* Часть первая  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=i6db4hguh4A
+" target="_blank"><img src="http://img.youtube.com/vi/i6db4hguh4A/0.jpg" 
+alt="Видео часть Первая" width="240" height="180" border="10" /></a>
+* Часть вторая  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=xHwwPXLpzIs
+" target="_blank"><img src="http://img.youtube.com/vi/xHwwPXLpzIs/0.jpg" 
+alt="Видео часть Первая" width="240" height="180" border="10" /></a>
+* Часть третья  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=LpBXKAn-INg
+" target="_blank"><img src="http://img.youtube.com/vi/LpBXKAn-INg/0.jpg" 
+alt="Видео часть Первая" width="240" height="180" border="10" /></a>
+* Часть четвертая  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=I2CcxgwxWm8
+" target="_blank"><img src="http://img.youtube.com/vi/I2CcxgwxWm8/0.jpg" 
+alt="Видео часть Первая" width="240" height="180" border="10" /></a>
 
 ## Ход выполнения работы:
 1. Написать скрипт, который при запуске будет делать резервную копию самого себя (то есть файла, в котором содержится его исходный код) в другую директорию `backup` в вашем домашнем каталоге. При этом файл должен архивироваться одним из архиваторов на выбор - `zip`, `bzip2` или `tar`. Способ использования командархивации необходимо узнать, изучив справку.
